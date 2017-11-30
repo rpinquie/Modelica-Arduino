@@ -1,7 +1,7 @@
 #include "Servo.h"
+#include "SoftArduino.h"
 #include "ModelicaUtilities.h"
 
-#include "SoftArduino.h"
 
 #define INSTANCE SoftArduino::instance
 
@@ -41,7 +41,7 @@ void Servo::write(int value) {
 	//ModelicaFormatMessage("Servo::write(%d)\n", value);
 
 	if (value < 200) {
-		int pulseWidth = m_minPulseWidth + (m_maxPulseWidth - m_minPulseWidth) * (value / 180.);
+		int pulseWidth = static_cast<int>(m_minPulseWidth + (m_maxPulseWidth - m_minPulseWidth) * (value / 180.));
 		writeMicroseconds(pulseWidth);
 	} else {
 		writeMicroseconds(value);

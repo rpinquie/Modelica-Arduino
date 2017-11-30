@@ -9,7 +9,7 @@ model ArduinoUno "Virtual Arduino Uno"
         iconTransformation(extent={{-4,-204},{4,-196}})));
 
   Arduino.Internal.ExternalArduino externalArduino=
-      Arduino.Internal.ExternalArduino();
+      Arduino.Internal.ExternalArduino(Arduino.Internal.ModelicaFunctions());
 
   Modelica.Electrical.Analog.Interfaces.Pin A1 annotation (Placement(
         transformation(extent={{-170,-30},{-150,-10}}),iconTransformation(
@@ -135,8 +135,6 @@ protected
     output Real pulseWidth[numDigitalPins];
     output Integer pulsePeriod[numDigitalPins];
     external "C" ModelicaArduino_update(instance, timeIn, analogReference, analog, digital, portMode, pulseWidth, pulsePeriod) annotation (
-      Include="#include <ModelicaArduino.h>",
-      IncludeDirectory="modelica://Arduino/Resources/Include",
       Library="ModelicaArduino");
    end evaluate;
 
